@@ -62,7 +62,7 @@ int SDCP_Client::encode(const QString &sessionId, unsigned int msgType, unsigned
     short2bytes(_Length, _EncodeBuffer, SessionID_ByteSize+MsgType_ByteSize+SN_ByteSize);
 
     //adler32
-    _Adler32 = makeAdler32((const unsigned char*)pbBuf.data(), pbBuf.length());
+    _Adler32 = makeAdler32((const unsigned char*)pbBuf.toUtf8().data(), pbBuf.length());
     long2bytes(_Adler32, _EncodeBuffer, SessionID_ByteSize+MsgType_ByteSize+SN_ByteSize+Length_ByteSize);
 
     //protobuf
@@ -74,7 +74,7 @@ int SDCP_Client::encode(const QString &sessionId, unsigned int msgType, unsigned
     return Encode_OK;
 }
 
-int SDCP_Client::decode(const unsigned char *buff, unsigned long long size)
+int SDCP_Client::decode(const unsigned char *buff, unsigned int size)
 {
     _MsgType = 0x0;
     _SN = 0;
@@ -89,7 +89,7 @@ int SDCP_Client::decode(const unsigned char *buff, unsigned long long size)
 
     //length
     _Length = bytes2short(buff, MsgType_ByteSize+SN_ByteSize+UpdGroup_ByteSize+RespCode_ByteSize);
-    if (size != (SHeader_ByteSize+_Length))
+    if (size != (unsigned int)(SHeader_ByteSize+_Length))
         return Decode_Illegal_Length;
 
     //msgtype

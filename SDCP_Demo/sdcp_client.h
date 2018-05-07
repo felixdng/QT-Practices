@@ -13,7 +13,7 @@ public:
     ~SDCP_Client();
 
     int encode(const QString &sessionId, unsigned int msgType, unsigned int sn, const void *buff);
-    int decode(const unsigned char *buff, unsigned long long size);
+    int decode(const unsigned char *buff, unsigned int size);
 
     QString getSessionId() const;
     unsigned int getMsgType() const;

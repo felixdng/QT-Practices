@@ -81,7 +81,7 @@ int SDCP_Server::encode(unsigned int msgType, unsigned int sn, unsigned int updG
     return Encode_OK;
 }
 
-int SDCP_Server::decode(const unsigned char *buff, unsigned long long size)
+int SDCP_Server::decode(const unsigned char *buff, unsigned int size)
 {
     _SessionId = "0000000000000000";
     _MsgType = 0x0;
@@ -95,7 +95,7 @@ int SDCP_Server::decode(const unsigned char *buff, unsigned long long size)
 
     //length
     _Length = bytes2short(buff, SessionID_ByteSize+MsgType_ByteSize+SN_ByteSize);
-    if (size != (CHeader_ByteSize+_Length))
+    if (size != (unsigned int)(CHeader_ByteSize+_Length))
         return Decode_Illegal_Length;
 
     //sessionid

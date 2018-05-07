@@ -12,7 +12,7 @@ public:
 
     int encode(unsigned int msgType, unsigned int sn, unsigned int updGroup,
                unsigned short respCode, const void *buff);
-    int decode(const unsigned char *buff, unsigned long long size);
+    int decode(const unsigned char *buff, unsigned int size);
 
     string getSessionId() const;
     unsigned int getMsgType() const;
