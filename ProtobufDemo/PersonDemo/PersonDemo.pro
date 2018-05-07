@@ -5,9 +5,11 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     ../source/Person.pb.cc \
+    ../source/AddressBook.pb.cc
 
 HEADERS += \
     ../source/Person.pb.h \
+    ../source/AddressBook.pb.h
 
 INCLUDEPATH += ../source/
 
