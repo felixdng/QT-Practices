@@ -75,7 +75,7 @@ int SDCP_Server::encode(unsigned int msgType, unsigned int sn, unsigned int updG
     //protobuf
     if (_Length > 0) {
         for (int i = 0; i < _Length; ++i)
-            _EncodeBuffer[SessionID_ByteSize+MsgType_ByteSize+SN_ByteSize+Length_ByteSize+Adler32_ByteSize+i] = pbBuf[i];
+            _EncodeBuffer[MsgType_ByteSize+SN_ByteSize+UpdGroup_ByteSize+RespCode_ByteSize+Length_ByteSize+Adler32_ByteSize+i] = pbBuf[i];
     }
 
     return Encode_OK;
